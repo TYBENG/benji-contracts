@@ -41,6 +41,6 @@ module.exports.skip = multiSkip([
   // skipIfChainIdIs(['137']), // migration already done
   // skipIfChainIdIs(['97']), // bsctest
   // skipIfChainIdIs(['56']), // bsc mainnet
-  skipIfContractExists('NFTFusion'), // contract guard
+  skipIfContractExists('PRIMATEv2'), // contract guard
 ]);
-module.exports.tags = ['NFTFusion'];
+module.exports.tags = ['PRIMATEv2'];
