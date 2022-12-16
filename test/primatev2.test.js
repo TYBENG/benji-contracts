@@ -7,7 +7,7 @@ describe('PRIMATEv2 Token contract', function () {
 
   beforeEach(async function () {
     [owner, addr1, addr2] = await hre.ethers.getSigners();
-    const PrimateV2Token = await hre.ethers.getContractFactory('PRIMATEv2');
+    const PrimateV2Token = await hre.ethers.getContractFactory('PRIMATEv2Mock');
     primateV2Token = await PrimateV2Token.deploy('PRIMATE v2', 'PRIMATE', '18', '0x539B86cD88fd41272335f9E46eAf7bF64f9Fa1e5');
     await primateV2Token.deployed();
   });
