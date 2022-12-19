@@ -1,28 +1,37 @@
 const {expect} = require('chai');
-const {ethers} = require('hardhat');
+const {getForwarderRegistryAddress} = require('@animoca/ethereum-contracts/test/helpers/run');
+const {loadFixture} = require('@animoca/ethereum-contracts/test/helpers/fixtures');
+const {deployContract} = require('@animoca/ethereum-contracts/test/helpers/contract');
 
-describe('PRIMATEv2 test transfer from using contract', function () {
-  let primateV2Token;
-  let sale;
-  let MINTER_ROLE = '0x6d696e7465720000000000000000000000000000000000000000000000000000';
+describe('PRIMATEv2TokenTransfer', function () {
+  let deployer, addr1, addr2;
+  const name = 'PRIMATE v2';
+  const symbol = 'PRIMATE';
+  const decimals = ethers.BigNumber.from('18');
 
-  beforeEach(async function () {
-    [owner, addr1, addr2] = await hre.ethers.getSigners();
-    const PrimateV2Token = await hre.ethers.getContractFactory('PRIMATEv2Mock');
-    primateV2Token = await PrimateV2Token.deploy('PRIMATE v2', 'PRIMATE', '18', '0x539B86cD88fd41272335f9E46eAf7bF64f9Fa1e5');
-    await primateV2Token.deployed();
-    const saleContract = await hre.ethers.getContractFactory('SaleContract');
-    sale = await saleContract.deploy(primateV2Token.address);
-    await sale.deployed();
+  before(async function () {
+    [deployer, addr1, addr2] = await hre.ethers.getSigners();
   });
-  describe('Deploy Sale', function () {
+
+  const fixture = async function () {
+    const forwarderRegistryAddress = await getForwarderRegistryAddress();
+    console.log(forwarderRegistryAddress);
+    this.primateToken = await deployContract('PRIMATEv2', name, symbol, decimals, forwarderRegistryAddress);
+    this.sale = await deployContract('SaleContract', this.primateToken.address);
+
+    await this.primateToken.grantRole(await this.primateToken.MINTER_ROLE(), deployer.address);
+  };
+  beforeEach(async function () {
+    await loadFixture(fixture, this);
+  });
+  describe('onTokenTransfer', function () {
     it('Should be able to transfer approvals', async function () {
-      await primateV2Token.connect(owner).grantRole(MINTER_ROLE, owner.address);
-      await primateV2Token.connect(owner).mint(owner.address, 10);
-      expect(await primateV2Token.balanceOf(owner.address)).to.equals(10);
-      await primateV2Token.connect(owner).approve(sale.address, 5);
-      await sale.connect(owner).transferToken(owner.address, addr1.address, 2);
-      expect(await primateV2Token.balanceOf(addr1.address)).to.equals(2);
+      await this.primateToken.connect(deployer).mint(deployer.address, 10);
+      expect(await this.primateToken.balanceOf(deployer.address)).to.equals(10);
+      await this.primateToken.connect(deployer).approve(this.sale.address, 5);
+      await this.sale.connect(deployer).transferToken(deployer.address, addr1.address, 2);
+      expect(await this.primateToken.balanceOf(addr1.address)).to.equals(2);
+      expect(await this.primateToken.balanceOf(deployer.address)).to.equals(8);
     });
   });
 });

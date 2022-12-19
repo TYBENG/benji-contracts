@@ -1,15 +1,15 @@
 const {behavesLikeERC20} = require('@animoca/ethereum-contracts/test/contracts/token/ERC20/behaviors/ERC20.behavior');
-const {getDeployerAddress, getForwarderRegistryAddress, runBehaviorTests} = require('@animoca/ethereum-contracts/test//helpers/run');
+const {getDeployerAddress, getForwarderRegistryAddress, runBehaviorTests} = require('@animoca/ethereum-contracts/test/helpers/run');
 
 const name = 'PRIMATE v2';
 const symbol = 'PRIMATE';
 const decimals = ethers.BigNumber.from('18');
-const forwarderRegistry = '0x539B86cD88fd41272335f9E46eAf7bF64f9Fa1e5';
+
 const tokenURI = '';
 
 const config = {
   immutable: {
-    name: 'PRIMATEv2Mock',
+    name: 'PRIMATEv2',
     ctorArguments: ['tokenName', 'tokenSymbol', 'tokenDecimal', 'forwarderRegistry'],
     testMsgData: true,
   },
@@ -17,8 +17,7 @@ const config = {
     tokenName: name,
     tokenSymbol: symbol,
     tokenDecimal: decimals,
-    // forwarderRegistry: getForwarderRegistryAddress,
-    forwarderRegistry: '0x539b86cd88fd41272335f9e46eaf7bf64f9fa1e5',
+    forwarderRegistry: getForwarderRegistryAddress,
     initialAdmin: getDeployerAddress,
     initialOwner: getDeployerAddress,
   },
@@ -30,7 +29,6 @@ runBehaviorTests('ERC20 Burnable', config, function (deployFn) {
     symbol,
     decimals,
     tokenURI,
-    forwarderRegistry,
     revertMessages: {
       // ERC20
       ApproveToZero: 'ERC20: approval to address(0)',
