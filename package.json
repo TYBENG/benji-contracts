@@ -38,11 +38,11 @@
     "deploy:localhost": "hardhat deploy --network localhost",
     "deploy:goerli": "hardhat deploy --network goerli",
     "deploy:mainnet": "hardhat deploy --network mainnet",
-    "deploy:mumbai": "hardhat deploy --network polygonMumbai",
+    "deploy:mumbai": "hardhat deploy --network mumbai",
     "deploy:matic": "hardhat deploy --network matic",
     "verify:goerli": "hardhat --show-stack-traces --network goerli etherscan-verify",
     "verify:mainnet": "hardhat --show-stack-traces --network mainnet etherscan-verify",
-    "verify:mumbai": "hardhat --show-stack-traces --network polygonMumbai etherscan-verify",
+    "verify:mumbai": "hardhat --show-stack-traces --network mumbai etherscan-verify",
     "verify:matic": "hardhat --show-stack-traces --network polygon etherscan-verify"
   },
   "devDependencies": {
