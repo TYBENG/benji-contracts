@@ -7,11 +7,9 @@ module.exports = {
           'node_modules/@animoca/ethereum-contracts-bridging-0.1.2/artifacts',
           'node_modules/@animoca/ethereum-migrations/imports',
           'node_modules/@animoca/ethereum-migrations/deployments/all',
+          'node_modules/@animoca/ethereum-contracts/artifacts',
         ],
         deploy: 'node_modules/@animoca/ethereum-migrations/migrations',
-      },
-      {
-        artifacts: 'node_modules/@animoca/ethereum-contracts/artifacts',
       },
     ],
     deployments: {
@@ -21,6 +19,11 @@ module.exports = {
       goerli: ['node_modules/@animoca/ethereum-migrations/deployments/goerli', 'node_modules/@animoca/ethereum-migrations/deployments/all'],
       matic: ['node_modules/@animoca/ethereum-migrations/deployments/matic', 'node_modules/@animoca/ethereum-migrations/deployments/all'],
       mumbai: ['node_modules/@animoca/ethereum-migrations/deployments/mumbai', 'node_modules/@animoca/ethereum-migrations/deployments/all'],
+    },
+  },
+  namedAccounts: {
+    Primate_Wallet: {
+      default: '0xD194D2eC8A86cD64921C621ED67fd808Fe362bF9',
     },
   },
 };
