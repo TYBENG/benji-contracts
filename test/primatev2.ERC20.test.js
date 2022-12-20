@@ -9,7 +9,7 @@ const tokenURI = '';
 
 const config = {
   immutable: {
-    name: 'PRIMATEv2',
+    name: 'PRIMATEv2Mock',
     ctorArguments: ['tokenName', 'tokenSymbol', 'tokenDecimal', 'forwarderRegistry'],
     testMsgData: true,
   },
