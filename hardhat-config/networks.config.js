@@ -8,5 +8,9 @@ module.exports = {
       defaultProvider: 'alchemy',
       companionNetworks: null,
     },
+    mumbai: {
+      defaultProvider: 'alchemy',
+      companionNetworks: null,
+    },
   },
 };
