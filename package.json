@@ -46,7 +46,9 @@
     "verify:matic": "hardhat --show-stack-traces --network polygon etherscan-verify"
   },
   "devDependencies": {
-    "@animoca/ethereum-contracts": "=0.3.1",
+    "@animoca/ethereum-contracts": "^0.3.1",
+    "@animoca/ethereum-contracts-0.3.1": "npm:@animoca/ethereum-contracts@0.3.1",
+    "@animoca/ethereum-contracts-bridging-0.1.2": "npm:@animoca/ethereum-contracts-bridging@0.1.2",
     "@animoca/ethereum-migrations": "=0.1.0",
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
@@ -54,11 +56,11 @@
     "@nomiclabs/hardhat-etherscan": "^3.0.0",
     "@openzeppelin/contracts": "^4.8.0",
     "chai": "^4.2.0",
-    "cross-env": "^7.0.3",
     "cli-progress": "^3.11.2",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
-    "eslint-plugin-mocha": "^10.1.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-mocha": "^10.1.0",
     "eslint-plugin-prettier": "^4.2.1",
     "ethers": "^5.4.7",
     "hardhat": "^2.12.2",
@@ -70,9 +72,9 @@
     "lodash.mergewith": "^4.6.2",
     "prettier": "^2.7.1",
     "prettier-plugin-solidity": "^1.0.0-rc.1",
-    "solidity-coverage": "^0.8.2",
     "solhint": "^3.3.7",
     "solhint-plugin-prettier": "^0.0.5",
+    "solidity-coverage": "^0.8.2",
     "solidity-docgen": "^0.6.0-beta.29",
     "yesno": "^0.4.0"
   }
