@@ -13,13 +13,13 @@ const Batch_Mint_Wallet = [
 module.exports = async (bre) => {
   const {deployments, getNamedAccounts} = hre;
   const {execute} = deployments;
-  const {Primate_Wallet} = await getNamedAccounts();
+  const {BenjiToken_Wallet} = await getNamedAccounts();
 
   console.log('++++++++++++++++++++++ Batch Mint ++++++++++++++++++++++');
   await execute(
-    'PRIMATEv2',
+    'BenjiToken',
     {
-      from: Primate_Wallet,
+      from: BenjiToken_Wallet,
       log: true,
     },
     'batchMint',

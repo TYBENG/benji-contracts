@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['plugin:mocha/recommended', 'prettier'],
+  extends: ['plugin:mocha/recommended', 'plugin:prettier/recommended', 'prettier'],
   env: {
     node: true,
     mocha: true,
@@ -8,6 +8,8 @@ module.exports = {
     ecmaVersion: 9,
   },
   rules: {
+    'prettier/prettier': 'error',
+    'no-unused-vars': ['error', {argsIgnorePattern: '^_'}],
     'no-unused-vars': 'off',
     'no-multi-spaces': ['error', {exceptions: {VariableDeclarator: true}}],
     'no-else-return': ['error', {allowElseIf: true}],

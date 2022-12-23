@@ -21,9 +21,4 @@ module.exports = {
       mumbai: ['node_modules/@animoca/ethereum-migrations/deployments/mumbai', 'node_modules/@animoca/ethereum-migrations/deployments/all'],
     },
   },
-  namedAccounts: {
-    Primate_Wallet: {
-      default: '0xD194D2eC8A86cD64921C621ED67fd808Fe362bF9',
-    },
-  },
 };
