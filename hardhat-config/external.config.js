@@ -4,6 +4,7 @@ module.exports = {
       {
         artifacts: [
           'node_modules/@animoca/ethereum-contracts-0.3.1/artifacts',
+          'node_modules/@animoca/ethereum-contracts/artifacts',
           'node_modules/@animoca/ethereum-contracts-bridging-0.1.2/artifacts',
           'node_modules/@animoca/ethereum-migrations/imports',
           'node_modules/@animoca/ethereum-migrations/deployments/all',
