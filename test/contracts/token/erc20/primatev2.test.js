@@ -3,10 +3,10 @@ const {getForwarderRegistryAddress} = require('@animoca/ethereum-contracts/test/
 const {loadFixture} = require('@animoca/ethereum-contracts/test/helpers/fixtures');
 const {deployContract} = require('@animoca/ethereum-contracts/test/helpers/contract');
 
-describe('PRIMATEv2 Token contract', function () {
+describe('BENJI Token contract', function () {
   let deployer, addr1, addr2;
-  const name = 'PRIMATE v2 MOCK';
-  const symbol = 'MOCK PRIMATE';
+  const name = 'BENJI v2 MOCK';
+  const symbol = 'MOCK BENJI';
   const decimals = ethers.BigNumber.from('18');
 
   before(async function () {
@@ -16,7 +16,7 @@ describe('PRIMATEv2 Token contract', function () {
   const fixture = async function () {
     const forwarderRegistryAddress = await getForwarderRegistryAddress();
     console.log(forwarderRegistryAddress);
-    this.primateV2Token = await deployContract('PRIMATEv2Mock', name, symbol, decimals, forwarderRegistryAddress);
+    this.primateV2Token = await deployContract('BenjiTokenMock', name, symbol, decimals, forwarderRegistryAddress);
 
     await this.primateV2Token.grantRole(await this.primateV2Token.MINTER_ROLE(), owner.address);
   };
