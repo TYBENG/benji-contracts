@@ -9,8 +9,8 @@ const Batch_Mint_Values = [
 ];
 
 /*
-* TODO: will be changed once the distribution addresses are confirmed
-* */
+ * TODO: will be changed once the distribution addresses are confirmed
+ * */
 const Batch_Mint_Wallet = [
   '0x37F5bCE551DEA35148FDed568f84fb99BBD3F9A0',
   '0x34231C2559bC143aabd24b5F5407c4347762EA50',
@@ -19,7 +19,4 @@ const Batch_Mint_Wallet = [
 ];
 
 module.exports = BENJI_airdrop('BenjiToken', Batch_Mint_Wallet, Batch_Mint_Values);
-module.exports.skip = multiSkip(
-  skipNetworksTagged('production'),
-  skipChainTypesExceptFor('ethereum')
-);
+module.exports.skip = multiSkip(skipNetworksTagged('production'), skipChainTypesExceptFor('ethereum'));
