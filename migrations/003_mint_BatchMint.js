@@ -15,4 +15,7 @@ const Batch_Mint_Wallet = [
 ];
 
 module.exports = BENJI_airdrop('BenjiToken', Batch_Mint_Wallet, Batch_Mint_Values);
-module.exports.skip = multiSkip(skipNetworksTagged('production'), skipChainTypesExceptFor('ethereum'));
+module.exports.skip = multiSkip(
+  skipNetworksTagged('production'),
+  skipChainTypesExceptFor('ethereum')
+);
