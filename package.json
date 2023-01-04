@@ -48,7 +48,6 @@
   "devDependencies": {
     "@animoca/ethereum-contracts": "^0.3.1",
     "@animoca/ethereum-contracts-0.3.1": "npm:@animoca/ethereum-contracts@0.3.1",
-    "@animoca/ethereum-contracts-bridging-0.1.2": "npm:@animoca/ethereum-contracts-bridging@0.1.2",
     "@animoca/ethereum-migrations": "=0.1.0",
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.0",

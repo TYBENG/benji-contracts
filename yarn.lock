@@ -7,11 +7,6 @@
   resolved "https://registry.yarnpkg.com/@animoca/ethereum-contracts/-/ethereum-contracts-0.3.1.tgz#2c07a5fc111eadaf85ee2b9289a2d4766f3be54a"
   integrity sha512-AviUVLE/MF/j32XfUWLsl3mtmM92APydN9qCyvDlfGeOVFoN21NP5Ht7epaymKil/EPwF7FVWypgyvnWGPK0SQ==
 
-"@animoca/ethereum-contracts-bridging-0.1.2@npm:@animoca/ethereum-contracts-bridging@0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@animoca/ethereum-contracts-bridging/-/ethereum-contracts-bridging-0.1.2.tgz#66739ac5960b10836b297ae93e37afa993746694"
-  integrity sha512-G+a+/Vt5mviV/VK7t0XPrGFFBWN/NINTGfF1PkiyFcAwwEckdBZykgr+zTt37CERBkKo4QbTj7H5ZU/hy6jf+A==
-
 "@animoca/ethereum-migrations@=0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@animoca/ethereum-migrations/-/ethereum-migrations-0.1.0.tgz#d4e0758b2af2f7b42e45900d1924e5e2f87d61fe"
