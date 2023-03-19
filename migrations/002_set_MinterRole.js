@@ -1,10 +1,14 @@
 const grantRole = require('@animoca/ethereum-migrations/src/templates/access/AccessControl/grantRole');
+const {getNamedAccount} = require('@animoca/ethereum-migrations/src/helpers/templates');
+const {multiSkip, skipChainTypesExceptFor} = require("@animoca/ethereum-migrations/src/helpers/common");
+
 const name = 'BenjiToken';
 const ROLE = 'MINTER';
-const addressToGranRole = '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266';
 
-module.exports = grantRole(name, ROLE, addressToGranRole, {
+module.exports =  grantRole(name, ROLE, getNamedAccount('BenjiToken_Wallet'), {
   from: 'BenjiToken_Wallet',
 });
-
+module.exports.skip = multiSkip(
+  skipChainTypesExceptFor('ethereum'),
+);
 module.exports.tags = ['grantRole_BenjiToken'];
