@@ -8,15 +8,15 @@ const Batch_Mint_Values = [
   '100000000000000000000000000',
 ];
 
-/*
- * TODO: will be changed once the distribution addresses are confirmed
- * */
-const Batch_Mint_Wallet = [
-  '0x37F5bCE551DEA35148FDed568f84fb99BBD3F9A0',
-  '0x34231C2559bC143aabd24b5F5407c4347762EA50',
-  '0x23fBC110481064EE737c8dc3F2bB324A13f594F4',
-  '0x328AC1Bb716C0b486D6714F54ecC293b7b5325dC',
+const InitialHolderWallets =  [
+  '0x5c3b01C47Aa7e64B669FB262521904BC54C8d643',
+  '0x08A8313eB71EEbEfc56BCD5f9584c66Bd552D513',
+  '0xC20F3d1Bd9Ba05337DA6933E9dD6e7705c585033',
+  '0x4e384Fa3d947fb107f8f882a464425be757D84D7',
 ];
 
-module.exports = BENJI_airdrop('BenjiToken', Batch_Mint_Wallet, Batch_Mint_Values);
-module.exports.skip = multiSkip(skipNetworksTagged('production'), skipChainTypesExceptFor('ethereum'));
+module.exports =  BENJI_airdrop('BenjiToken', InitialHolderWallets, Batch_Mint_Values);
+module.exports.skip = multiSkip(
+  skipChainTypesExceptFor('ethereum')
+);
+module.exports.tags = ['mint_batchmint'];

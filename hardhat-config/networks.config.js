@@ -3,6 +3,7 @@ module.exports = {
     // Ethereum
     mainnet: {
       defaultProvider: 'alchemy',
+      companionNetworks: null,
     },
     goerli: {
       defaultProvider: 'alchemy',

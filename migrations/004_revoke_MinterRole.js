@@ -1,4 +1,11 @@
-module.exports = async (bre) => {
+const revokeRole = require('@animoca/ethereum-migrations/src/templates/access/AccessControl/revokeRole');
+const {getNamedAccount} = require('@animoca/ethereum-migrations/src/helpers/templates');
+const {multiSkip, skipChainTypesExceptFor} = require("@animoca/ethereum-migrations/src/helpers/common");
+
+const name = 'BenjiToken';
+const ROLE = 'MINTER';
+
+module.exports = async (hre) => {
   const {deployments, getNamedAccounts} = hre;
   const {execute} = deployments;
   const {BenjiToken_Wallet} = await getNamedAccounts();
@@ -16,7 +23,12 @@ module.exports = async (bre) => {
     BenjiToken_Wallet
   );
 };
-module.exports.skip = async () => {
-  return true; // skip after running it first time and set flag as required
-};
-module.exports.tags = ['BenjiToken_revokeMinter'];
+
+// module.exports = revokeRole(name, ROLE, getNamedAccount('BenjiToken_Wallet'), {
+//   from: 'BenjiToken_Wallet',
+// });
+
+module.exports.skip = multiSkip(
+  skipChainTypesExceptFor('ethereum'),
+);
+module.exports.tags = ['revokeRole_BenjiToken'];
