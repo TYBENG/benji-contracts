@@ -14,8 +14,4 @@ module.exports = Contract_deploy('BenjiToken', {
   from: 'BenjiToken_Wallet',
 });
 
-module.exports.skip = multiSkip(
-  skipIfDeployed('BenjiToken'),
-);
-
 module.exports.tags = ['BenjiToken_deploy'];
