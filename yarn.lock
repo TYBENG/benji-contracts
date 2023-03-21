@@ -12,10 +12,10 @@
   resolved "https://registry.yarnpkg.com/@animoca/ethereum-contracts/-/ethereum-contracts-1.1.0.tgz#5c679f341fa9e91451885c4d12e94bdb3ddba005"
   integrity sha512-gGk3yo00z6Og3JIehVkQeQMpLTpSQoo3oQwkP4CfzAgzXaY+tXLgyudEPYIbYMf7WZIfd+tJiru1J+krEHhZeg==
 
-"@animoca/ethereum-migrations@1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@animoca/ethereum-migrations/-/ethereum-migrations-1.0.3.tgz#56e6f1d1532e68091245bc13d73b2bd81e31ceb6"
-  integrity sha512-ezC9qMqxsMJAf9uPkVWKTfCEQhHrt4VuZ1wEg6YwRDma91+hXzcEcVeodwu08ftM7B8T6LnFYY9Flzk2u4tozg==
+"@animoca/ethereum-migrations@1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@animoca/ethereum-migrations/-/ethereum-migrations-1.0.4.tgz#b2c881967b6115475fdd70d321558eed3a003122"
+  integrity sha512-opUhrCQsT2oygotSEekBR5N1Gm2MMZdcymRek+gYNfwOVWBZWMcqwAOFQXtVc4k6YMYmqdxaRCzr2v1fC6yXWw==
 
 "@babel/code-frame@^7.0.0":
   version "7.18.6"
