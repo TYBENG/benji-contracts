@@ -16,6 +16,7 @@ const InitialHolderWallets =  [
 ];
 
 module.exports =  BENJI_airdrop('BenjiToken', InitialHolderWallets, Batch_Mint_Values);
+
 module.exports.skip = multiSkip(
   skipChainTypesExceptFor('ethereum')
 );

@@ -5,9 +5,7 @@ const {multiSkip, skipChainTypesExceptFor} = require("@animoca/ethereum-migratio
 const name = 'BenjiToken';
 const ROLE = 'MINTER';
 
-module.exports = revokeRole(name, ROLE, getNamedAccount('BenjiToken_Wallet'), {
-  from: 'BenjiToken_Wallet',
-});
+module.exports = revokeRole(name, ROLE, getNamedAccount('deployer'));
 
 module.exports.skip = multiSkip(
   skipChainTypesExceptFor('ethereum'),
