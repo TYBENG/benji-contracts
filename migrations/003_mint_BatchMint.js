@@ -2,10 +2,10 @@ const {multiSkip, skipChainTypesExceptFor, skipNetworksTagged} = require('@animo
 const BENJI_airdrop = require('@animoca/ethereum-migrations/src/templates/token/ERC20/airdrop');
 
 const Batch_Mint_Values = [
+  '1000000000000000000000000000',
+  '625000000000000000000000000',
   '235000000000000000000000000',
-  '25000000000000000000000000',
-  '1600000000000000000000000000',
-  '100000000000000000000000000',
+  '200000000000000000000000000',
 ];
 
 const InitialHolderWallets =  [
@@ -16,6 +16,7 @@ const InitialHolderWallets =  [
 ];
 
 module.exports =  BENJI_airdrop('BenjiToken', InitialHolderWallets, Batch_Mint_Values);
+
 module.exports.skip = multiSkip(
   skipChainTypesExceptFor('ethereum')
 );

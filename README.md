@@ -20,4 +20,4 @@ $ yarn deploy
 # Run deployment on goerli
 $ yarn deploy:goerli
 
-yarn deploy:mainnet --gasprice 28000000000
+yarn deploy:mainnet --gasprice 15000000000
