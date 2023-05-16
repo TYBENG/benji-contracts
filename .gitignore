@@ -1,31 +1,52 @@
-node_modules
-coverage
-coverage.json
-typechain
-typechain-types
+# npm
+node_modules/
+.npmrc*
 
-#Hardhat files
+# yarn
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*
+
+# yalc
+.yalc
+yalc.lock
+
+# vscode
+.vscode/*
+!.vscode/settings.json.default
+!.vscode/launch.json.default
+!.vscode/extensions.json.default
+
+# env
+.env*
+!.env.example
+
+# solc
 cache/
 artifacts/*
-!artifacts/build-info/
 !artifacts/contracts/
-!artifacts/imports/
+!artifacts/build-info/
+
+# solidity-coverage
+coverage/
+coverage.json
+*.coverage/
+
+# solidity-docgen
+docs/
+
+# hardhat plugins
+flattened*
+hardhat.config.last.json
+
+# misc
+*.log
+.DS_Store
+
+dev.*
 
 .idea
 .temp/
 
-cache.coverage
-artifacts.coverage
-coverage*
-.coverage*
-smartcheck*
-flattened*
-docs/
-
-yarn-error.log
-hardhat.config.last.json
-
-!.env.example
-.env
-.env_*
 .mnemonic_*
