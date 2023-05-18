@@ -1,7 +1,10 @@
 node_modules/
 
-artifacts/
+artifacts*
 cache/
+imports/
 
-deployments/
-exports/
+coverage*
+
+contracts_*
+flattened*

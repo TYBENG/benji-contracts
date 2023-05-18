@@ -3,8 +3,7 @@ module.exports = {
     contracts: [
       {
         artifacts: [
-          'node_modules/@animoca/ethereum-contracts-1.1.0/artifacts',
-          'node_modules/@animoca/ethereum-contracts/artifacts',
+          'node_modules/@animoca/ethereum-contracts-1.0/artifacts',
           'node_modules/@animoca/ethereum-migrations/imports',
           'node_modules/@animoca/ethereum-migrations/deployments/all',
           'node_modules/@animoca/ethereum-contracts/artifacts',

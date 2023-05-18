@@ -1,7 +1,8 @@
 const {expect} = require('chai');
-const {getForwarderRegistryAddress} = require('@animoca/ethereum-contracts/test/helpers/run');
-const {loadFixture} = require('@animoca/ethereum-contracts/test/helpers/fixtures');
-const {deployContract} = require('@animoca/ethereum-contracts/test/helpers/contract');
+const {getForwarderRegistryAddress} = require('@animoca/ethereum-contracts/test/helpers/registries');
+const {loadFixture} = require('@animoca/ethereum-contract-helpers/src/test/fixtures');
+const {deployContract} = require('@animoca/ethereum-contract-helpers/src/test/deploy');
+const unit = require('ethjs-unit');
 
 describe('BenjiTokenTransfer', function () {
   let deployer, addr1, addr2;
@@ -15,23 +16,33 @@ describe('BenjiTokenTransfer', function () {
 
   const fixture = async function () {
     const forwarderRegistryAddress = await getForwarderRegistryAddress();
-    console.log(forwarderRegistryAddress);
-    this.benjiToken = await deployContract('BenjiTokenMock', name, symbol, decimals, forwarderRegistryAddress);
-    this.sale = await deployContract('SaleContract', this.benjiToken.address);
+    let tokenBalance = unit.toWei('10', 'ether').toString();
 
-    await this.benjiToken.grantRole(await this.benjiToken.MINTER_ROLE(), deployer.address);
+    const BatchMintAmounts = [tokenBalance];
+
+    const InitialHolderWallets = [deployer.address];
+
+    this.benjiToken = await deployContract(
+      'BenjiTokenMock',
+      name,
+      symbol,
+      decimals,
+      InitialHolderWallets,
+      BatchMintAmounts,
+      forwarderRegistryAddress
+    );
+    this.sale = await deployContract('SaleContract', this.benjiToken.address);
   };
   beforeEach(async function () {
     await loadFixture(fixture, this);
   });
   describe('onTokenTransfer', function () {
     it('Should be able to transfer approvals', async function () {
-      await this.benjiToken.connect(deployer).mint(deployer.address, 10);
-      expect(await this.benjiToken.balanceOf(deployer.address)).to.equals(10);
-      await this.benjiToken.connect(deployer).approve(this.sale.address, 5);
-      await this.sale.connect(deployer).transferToken(deployer.address, addr1.address, 2);
-      expect(await this.benjiToken.balanceOf(addr1.address)).to.equals(2);
-      expect(await this.benjiToken.balanceOf(deployer.address)).to.equals(8);
+      expect(await this.benjiToken.balanceOf(deployer.address)).to.equals(unit.toWei('10', 'ether').toString());
+      await this.benjiToken.connect(deployer).approve(this.sale.address, unit.toWei('5', 'ether').toString());
+      await this.sale.connect(deployer).transferToken(deployer.address, addr1.address, unit.toWei('2', 'ether').toString());
+      expect(await this.benjiToken.balanceOf(addr1.address)).to.equals(unit.toWei('2', 'ether').toString());
+      expect(await this.benjiToken.balanceOf(deployer.address)).to.equals(unit.toWei('8', 'ether').toString());
     });
   });
 });

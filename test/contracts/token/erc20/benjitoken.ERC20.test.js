@@ -1,40 +1,38 @@
 const {behavesLikeERC20} = require('@animoca/ethereum-contracts/test/contracts/token/ERC20/behaviors/ERC20.behavior');
-const {getDeployerAddress, getForwarderRegistryAddress, runBehaviorTests} = require('@animoca/ethereum-contracts/test/helpers/run');
-
+const {runBehaviorTests} = require('@animoca/ethereum-contract-helpers/src/test/run');
+const {getForwarderRegistryAddress} = require('@animoca/ethereum-contracts/test/helpers/registries');
 const name = 'BENJI';
 const symbol = 'BENJI';
 const decimals = ethers.BigNumber.from('18');
-
-const tokenURI = '';
+const holders = ['0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'];
+const amount = [100];
 
 const config = {
   immutable: {
     name: 'BenjiTokenMock',
-    ctorArguments: ['tokenName', 'tokenSymbol', 'tokenDecimal', 'forwarderRegistry'],
+    ctorArguments: ['tokenName', 'tokenSymbol', 'tokenDecimal', 'initialHolders', 'mintAmounts', 'forwarderRegistry'],
     testMsgData: true,
   },
   defaultArguments: {
     tokenName: name,
     tokenSymbol: symbol,
     tokenDecimal: decimals,
+    initialHolders: holders,
+    mintAmounts: amount,
     forwarderRegistry: getForwarderRegistryAddress,
-    initialAdmin: getDeployerAddress,
-    initialOwner: getDeployerAddress,
   },
 };
 
-runBehaviorTests('ERC20 Burnable', config, function (deployFn) {
+runBehaviorTests('ERC20 Behavior', config, function (deployFn) {
   const implementation = {
     name,
     symbol,
     decimals,
-    tokenURI,
+    holders,
+    amount,
     revertMessages: {
       // ERC20
       ApproveToZero: 'ERC20: approval to address(0)',
-      TransferExceedsBalance: 'ERC20: insufficient balance',
-      TransferToZero: 'ERC20: transfer to address(0)',
-      TransferExceedsAllowance: 'ERC20: insufficient allowance',
       InconsistentArrays: 'ERC20: inconsistent arrays',
       SupplyOverflow: 'ERC20: supply overflow',
 
@@ -42,25 +40,10 @@ runBehaviorTests('ERC20 Burnable', config, function (deployFn) {
       AllowanceUnderflow: 'ERC20: insufficient allowance',
       AllowanceOverflow: 'ERC20: allowance overflow',
 
-      // ERC20BatchTransfers
-      BatchTransferValuesOverflow: 'ERC20: values overflow',
-
-      // ERC20SafeTransfers
-      SafeTransferRejected: 'ERC20: safe transfer rejected',
-
       // ERC2612
       PermitFromZero: 'ERC20: permit from address(0)',
       PermitExpired: 'ERC20: expired permit',
       PermitInvalid: 'ERC20: invalid permit',
-
-      // ERC20Mintable
-      MintToZero: 'ERC20: mint to address(0)',
-      BatchMintValuesOverflow: 'ERC20: values overflow',
-
-      // ERC20Burnable
-      BurnExceedsBalance: 'ERC20: insufficient balance',
-      BurnExceedsAllowance: 'ERC20: insufficient allowance',
-      BatchBurnValuesOverflow: 'ERC20: insufficient balance',
 
       // Admin
       NotMinter: "AccessControl: missing 'minter' role",
@@ -72,40 +55,17 @@ runBehaviorTests('ERC20 Burnable', config, function (deployFn) {
       AllowanceTracking: true,
     },
     interfaces: {
-      ERC20: true,
+      ERC20: false,
       ERC20Detailed: true,
-      ERC20Metadata: true,
+      ERC20Metadata: false,
       ERC20Allowance: true,
-      ERC20BatchTransfer: true,
-      ERC20Safe: true,
+      ERC20BatchTransfer: false,
+      ERC20Safe: false,
       ERC20Permit: true,
-      ERC20Burnable: true,
-      ERC20Mintable: true,
     },
-    methods: {
-      // ERC20Burnable
-      'burn(uint256)': async (contract, value) => {
-        return contract.burn(value);
-      },
-      'burnFrom(address,uint256)': async (contract, from, value) => {
-        return contract.burnFrom(from, value);
-      },
-      'batchBurnFrom(address[],uint256[])': async (contract, owners, values) => {
-        return contract.batchBurnFrom(owners, values);
-      },
-
-      // ERC20Mintable
-      'mint(address,uint256)': async (contract, account, value) => {
-        return contract.mint(account, value);
-      },
-      'batchMint(address[],uint256[])': async (contract, accounts, values) => {
-        return contract.batchMint(accounts, values);
-      },
-    },
-    deploy: async function (initialHolders, initialBalances, deployer) {
+    methods: {},
+    deploy: async function () {
       const contract = await deployFn();
-      await contract.grantRole(await contract.MINTER_ROLE(), deployer.address);
-      await contract.batchMint(initialHolders, initialBalances);
       return contract;
     },
   };
