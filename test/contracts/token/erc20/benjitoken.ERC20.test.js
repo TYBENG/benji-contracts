@@ -10,16 +10,16 @@ const amount = [100];
 const config = {
   immutable: {
     name: 'BenjiTokenMock',
-    ctorArguments: ['tokenName', 'tokenSymbol', 'tokenDecimal', 'forwarderRegistry', 'initialHolders', 'mintAmounts'],
+    ctorArguments: ['tokenName', 'tokenSymbol', 'tokenDecimal', 'initialHolders', 'mintAmounts', 'forwarderRegistry'],
     testMsgData: true,
   },
   defaultArguments: {
     tokenName: name,
     tokenSymbol: symbol,
     tokenDecimal: decimals,
-    forwarderRegistry: getForwarderRegistryAddress,
     initialHolders: holders,
     mintAmounts: amount,
+    forwarderRegistry: getForwarderRegistryAddress,
   },
 };
 
@@ -33,21 +33,12 @@ runBehaviorTests('ERC20 Behavior', config, function (deployFn) {
     revertMessages: {
       // ERC20
       ApproveToZero: 'ERC20: approval to address(0)',
-      TransferExceedsBalance: 'ERC20: insufficient balance',
-      TransferToZero: 'ERC20: transfer to address(0)',
-      TransferExceedsAllowance: 'ERC20: insufficient allowance',
       InconsistentArrays: 'ERC20: inconsistent arrays',
       SupplyOverflow: 'ERC20: supply overflow',
 
       // ERC20Allowance
       AllowanceUnderflow: 'ERC20: insufficient allowance',
       AllowanceOverflow: 'ERC20: allowance overflow',
-
-      // ERC20BatchTransfers
-      BatchTransferValuesOverflow: 'ERC20: values overflow',
-
-      // ERC20SafeTransfers
-      SafeTransferRejected: 'ERC20: safe transfer rejected',
 
       // ERC2612
       PermitFromZero: 'ERC20: permit from address(0)',

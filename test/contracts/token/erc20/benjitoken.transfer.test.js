@@ -27,9 +27,9 @@ describe('BenjiTokenTransfer', function () {
       name,
       symbol,
       decimals,
-      forwarderRegistryAddress,
       InitialHolderWallets,
-      BatchMintAmounts
+      BatchMintAmounts,
+      forwarderRegistryAddress
     );
     this.sale = await deployContract('SaleContract', this.benjiToken.address);
   };

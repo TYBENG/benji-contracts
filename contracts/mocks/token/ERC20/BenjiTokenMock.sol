@@ -9,10 +9,10 @@ contract BenjiTokenMock is BenjiToken {
         string memory tokenName,
         string memory tokenSymbol,
         uint8 tokenDecimals,
-        IForwarderRegistry forwarderRegistry,
         address[] memory initialHolders,
-        uint256[] memory mintAmounts
-    ) BenjiToken(tokenName, tokenSymbol, tokenDecimals, forwarderRegistry, initialHolders, mintAmounts) {}
+        uint256[] memory mintAmounts,
+        IForwarderRegistry forwarderRegistry
+    ) BenjiToken(tokenName, tokenSymbol, tokenDecimals, initialHolders, mintAmounts, forwarderRegistry) {}
 
     function __msgData() external view returns (bytes calldata) {
         return _msgData();

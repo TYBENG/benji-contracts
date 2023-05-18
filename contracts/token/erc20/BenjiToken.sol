@@ -31,17 +31,10 @@ contract BenjiToken is
         string memory tokenName,
         string memory tokenSymbol,
         uint8 tokenDecimals,
-        IForwarderRegistry forwarderRegistry,
         address[] memory initialHolders,
-        uint256[] memory mintAmounts
-    )
-        ERC20()
-        ERC20Detailed(tokenName, tokenSymbol, tokenDecimals)
-        ERC20Metadata()
-        ForwarderRegistryContext(forwarderRegistry)
-        ContractOwnership(msg.sender)
-    {
-        require(initialHolders.length == mintAmounts.length, "BENJI: mint arguments mismatch");
+        uint256[] memory mintAmounts,
+        IForwarderRegistry forwarderRegistry
+    ) ERC20Detailed(tokenName, tokenSymbol, tokenDecimals) ForwarderRegistryContext(forwarderRegistry) ContractOwnership(msg.sender) {
         ERC20Storage.layout().batchMint(initialHolders, mintAmounts);
     }
 

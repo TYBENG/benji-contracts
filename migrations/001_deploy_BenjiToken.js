@@ -22,7 +22,6 @@ module.exports = Contract_deploy('BenjiToken', {
     {name: 'tokenName', value: 'BENJI'},
     {name: 'tokenSymbol', value: 'BENJI'},
     {name: 'tokenDecimals', value: '18'},
-    {name: 'forwarderRegistry', value: getContractAddress('ForwarderRegistry@1.0')},
     {
       name: 'initialHolders',
       value: InitialHolderWallets,
@@ -31,6 +30,7 @@ module.exports = Contract_deploy('BenjiToken', {
       name: 'mintAmounts',
       value: BatchMintAmounts,
     },
+    {name: 'forwarderRegistry', value: getContractAddress('ForwarderRegistry@1.0')},
   ],
 });
 

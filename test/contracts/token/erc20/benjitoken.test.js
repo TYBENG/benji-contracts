@@ -18,7 +18,7 @@ describe('BENJI Token contract', function () {
   const fixture = async function () {
     const forwarderRegistryAddress = await getForwarderRegistryAddress();
 
-    this.benjiToken = await deployContract('BenjiTokenMock', name, symbol, decimals, forwarderRegistryAddress, holders, amount);
+    this.benjiToken = await deployContract('BenjiTokenMock', name, symbol, decimals, holders, amount, forwarderRegistryAddress);
   };
   beforeEach(async function () {
     await loadFixture(fixture, this);
